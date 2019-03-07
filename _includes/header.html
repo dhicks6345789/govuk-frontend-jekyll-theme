@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- Page templates are derived from those defined by GOV.UK's Design System - as of June 2018, the standard for UK government websites, see: https://design-system.service.gov.uk
+We are currently using version 2.6.0 of the GOV.UK Frontend, see: https://github.com/alphagov/govuk-frontend
+For a rough example of how to turn the above Git repository into a Jekyl Theme, see: https://github.com/frankieroberto/govuk-jekyll-theme
+This HTML page template is derived from the basic GOV.UK page template given at: https://design-system.service.gov.uk/styles/page-template -->
+<html lang="en" class="govuk-template">
+    <head>
+        <meta charset="utf-8" />
+        {% if page.title and page.url != "/" %}
+        <title>{{ page.title }} - {{ site.title }}</title>
+        {% else %}
+        <title>{{ site.title | default: "Website" }}</title>
+        {% endif %}
+        
+        <!--[if !IE 8]><!-->
+            <link rel="stylesheet" href="{{ "/govuk-frontend-2.6.0/stylesheets/govuk-frontend-2.6.0.css" | relative_url }}"/>
+        <!--<![endif]-->
+        <!--[if IE 8]>
+            <link rel="stylesheet" href="{{ "/govuk-frontend-2.6.0/stylesheets/govuk-frontend-ie8-2.6.0.css" | relative_url }}"/>
+        <![endif]-->
+        {% if include.tableStripes == true %}
+            <link rel="stylesheet" href="{{ "/govuk-frontend-2.6.0/stylesheets/striped-tables.css" | relative_url }}"/>
+        {% endif %}
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#0b0c0c" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta property="og:image" content="/assets/images/govuk-opengraph-image.png">
+    </head>
+    <body class="govuk-template__body">
+        <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+        
+        <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+        
+        <header class="govuk-header " role="banner" data-module="header">
+            <div class="govuk-header__container govuk-width-container">
+                <div class="govuk-header__logo">
+                    <a href="{{ site.baseurl }}" class="govuk-header__link govuk-header__link--homepage">
+                    <span class="govuk-header__logotype">
+                            <span class="govuk-header__logotype-text">
+                                {{ site.title }}
+                            </span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <div class="govuk-width-container">
+            <div class="govuk-breadcrumbs">
+                <ol class="govuk-breadcrumbs__list">
+                    {% if page.breadcrumbs == true %}
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="{{ site.baseurl }}">Home</a>
+                    </li>
+                    {% if page.crumbOne %}
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="{{ site.baseurl }}{{ page.crumbOneURL }}">{{ page.crumbOne }}</a>
+                    </li>
+                    {% endif %}
+                    <li class="govuk-breadcrumbs__list-item" aria-current="page">{{ page.title }}</li>
+                    {% endif %}
+                </ol>
+            </div>
