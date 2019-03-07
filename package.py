@@ -15,7 +15,11 @@ def copyFiles(src, dest, filetypes):
 versionHandle = open("../govuk-frontend/dist/VERSION.txt")
 govukFrontendVersion = versionHandle.read().strip()
 versionHandle.close()
+govukFrontendFolder = "govuk-frontend-" + govukFrontendVersion
 
+# Copy over the SCSS files from govuk-frontend
 copyFiles("../govuk-frontend/package", "_sass", ["scss"])
 for folder in ["components","core","helpers","objects","overrides","settings","tools","utilities","vendor"]:
   copyFiles("../govuk-frontend/package/" + folder, "_sass/" + folder, ["scss"])
+
+copyFile("../govuk-frontend/dist", govukFrontendFolder + os.sep + "javascript", ["js"])
