@@ -16,5 +16,6 @@ versionHandle = open("../govuk-frontend/dist/VERSION.txt")
 govukFrontendVersion = versionHandle.read().strip()
 versionHandle.close()
 
+copyFiles("../govuk-frontend/package", "_sass", ["scss"])
 for folder in ["components","core","helpers","objects","overrides","settings","tools","utilities","vendor"]:
   copyFiles("../govuk-frontend/package/" + folder, "_sass/" + folder, ["scss"])
