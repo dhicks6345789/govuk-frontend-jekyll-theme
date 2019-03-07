@@ -26,3 +26,4 @@ for folder in ["components","core","helpers","objects","overrides","settings","t
 copyFiles("../govuk-frontend/dist", govukFrontendFolder + "/javascript", ["js"])
 
 copyFiles("../govuk-frontend/dist/assets/fonts", govukFrontendFolder + "/assets/fonts", ["woff","woff2","eot"])
+copyFiles("../govuk-frontend/dist/assets/images", govukFrontendFolder + "/assets/images", ["ico","png","svg"])
