@@ -23,4 +23,6 @@ for folder in ["components","core","helpers","objects","overrides","settings","t
   copyFiles("../govuk-frontend/package/" + folder, "_sass/" + folder, ["scss"])
 
 # Copy over compiled / minified Javascript files.
-copyFiles("../govuk-frontend/dist", govukFrontendFolder + os.sep + "javascript", ["js"])
+copyFiles("../govuk-frontend/dist", govukFrontendFolder + "/javascript", ["js"])
+
+copyFiles("../govuk-frontend/dist/assets/fonts", govukFrontendFolder + "/assets/fonts", ["woff","woff2","eot"])
