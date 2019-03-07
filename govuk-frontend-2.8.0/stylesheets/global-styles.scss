@@ -1,0 +1,15 @@
+---
+# Sets up global styles for formatting HTML generated from Markdown.
+---
+
+a {
+  @extend %govuk-link;
+}
+
+p {
+  @extend %govuk-body-m;
+}
+
+table {
+  @extend %govuk-body-m;
+}
