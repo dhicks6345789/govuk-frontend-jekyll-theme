@@ -6,7 +6,7 @@ import shutil
 def copyFiles(src, dest, filetypes):
   for item in os.listdir(src):
     if os.path.isdir(src + os.sep + item):
-      copyFiles(src + os.sep + item, dest + os.sep + item, fileTypes)
+      copyFiles(src + os.sep + item, dest + os.sep + item, filetypes)
     else:
       if item.split(".")[-1].lower() in filetypes:
         os.makedirs(dest, exist_ok=True)
