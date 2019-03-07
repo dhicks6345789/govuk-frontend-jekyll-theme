@@ -6,6 +6,7 @@ versionHandle = open("../govuk-frontend/dist/VERSION.txt")
 govukFrontendVersion = versionHandle.read().strip()
 versionHandle.close()
 
-govukPackageFolder = "govuk-frontend-" + govukFrontendVersion
-if not os.path.exists(govukPackageFolder):
-  os.mkdir(govukPackageFolder)
+os.makedirs("govuk-frontend", exist_ok=True)
+os.makedirs("govuk-frontend/assets", exist_ok=True)
+os.makedirs("govuk-frontend/javascript", exist_ok=True)
+os.makedirs("govuk-frontend/stylesheets", exist_ok=True)
