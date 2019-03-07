@@ -1,1 +1,45 @@
                 <table>
+                    <thead>
+                        <tr>
+                            <th>Reference Number</th>
+                            <th>PDF Version</th>
+                            <th>Date</th>
+                            <th>Reference From</th>
+                            <th>Subject</th>
+                            <th>Submissions From The Parties</th>
+                    </thead>
+                    <tbody>
+                        {% for determination in include.determinationArray %}
+                        {% assign referenceNumberSplit = determination.ReferenceNumber | split:"[" %}
+                        {% assign referenceNumberMatch = referenceNumberSplit[0] | append:" " %}
+                        <tr>
+                            <td>{{ determination.ReferenceNumber }}</td>
+                            <td>
+                                {% for PDFVersion in site.static_files %}
+                                {% capture sourceFolderMatch %}{{ include.sourceFolder }}/PDFVersion{% endcapture %}
+                                {% if PDFVersion.path contains sourceFolderMatch %}
+                                {% if PDFVersion.path contains referenceNumberMatch %}
+                                <a href="{{ PDFVersion.path | relative_url }}"><img src="{{ "/assets/icons/pdf.svg" | relative_url }}" alt="{{ referenceNumberSplit[0] }}"></a>
+                                {% endif %}
+                                {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>{{ determination.Date }}</td>
+                            <td>{{ determination.ReferenceFrom }}</td>
+                            <td>{{ determination.Subject | replace: "(settled out of court)", "<i>(settled out of court)</i>" }}</td>
+                            <td>
+                                {% for SubmissionFromTheParties in site.static_files %}
+                                {% capture sourceFolderMatch %}{{ include.sourceFolder }}/SubmissionsFromTheParties{% endcapture %}
+                                {% if SubmissionFromTheParties.path contains sourceFolderMatch %}
+                                {% if SubmissionFromTheParties.name contains referenceNumberMatch %}
+                                {% assign iconName = SubmissionFromTheParties.extname | split:"." %}
+                                {% assign fileDescription = SubmissionFromTheParties.basename | remove_first: referenceNumberMatch | remove_first: "- " %}
+                                <div><a href="{{ SubmissionFromTheParties.path | relative_url }}"><img src="{{ "/assets/icons/" | relative_url }}{{ iconName[1] | downcase }}.svg" alt="{{ SubmissionFromTheParties.name }}">{{ fileDescription }}</a></div>
+                                {% endif %}
+                                {% endif %}
+                                {% endfor %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
