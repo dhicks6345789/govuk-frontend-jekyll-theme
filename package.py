@@ -8,7 +8,7 @@ def copyFiles(src, dest, filetypes):
       copyFiles(src + os.sep + item, dest + os.sep + item, fileTypes)
     else:
       if item.split(".")[-1].lower() in filetypes:
-        print(item)
+        print(dest + os.sep + item)
 
 versionHandle = open("../govuk-frontend/dist/VERSION.txt")
 govukFrontendVersion = versionHandle.read().strip()
