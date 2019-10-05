@@ -14,7 +14,12 @@ def copyFiles(src, dest, filetypes):
         os.makedirs(dest, exist_ok=True)
         shutil.copy(src + os.sep + item, dest + os.sep + item)
 
-data = urllib.request.urlopen("https://github.com/alphagov/govuk-frontend/archive/master.zip").read()        
+zipArchive = open("master.zip", "wb")
+zipArchive.write(urllib.request.urlopen("https://github.com/alphagov/govuk-frontend/archive/master.zip").read())
+zipArchive.close()
+
+#with zipfile.ZipFile(path_to_zip_file, 'r') as zip_ref:
+#    zip_ref.extractall(directory_to_extract_to)
 
 print("https://github.com/alphagov/govuk-frontend/archive/master.zip")
         
