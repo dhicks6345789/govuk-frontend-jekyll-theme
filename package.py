@@ -18,8 +18,8 @@ zipArchive = open("master.zip", "wb")
 zipArchive.write(urllib.request.urlopen("https://github.com/alphagov/govuk-frontend/archive/master.zip").read())
 zipArchive.close()
 
-#with zipfile.ZipFile(path_to_zip_file, 'r') as zip_ref:
-#    zip_ref.extractall(directory_to_extract_to)
+zipRef = zipfile.ZipFile("master.zip", "r")
+zipRef.extractall("master")
 
 print("https://github.com/alphagov/govuk-frontend/archive/master.zip")
         
