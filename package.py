@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import os
+import sys
 import shutil
 import zipfile
 import urllib.request
@@ -14,19 +15,23 @@ def copyFiles(src, dest, filetypes):
         os.makedirs(dest, exist_ok=True)
         shutil.copy(src + os.sep + item, dest + os.sep + item)
 
+if len(sys.argv) < 3:
+  print("Generates a Jekyll-compatible template from the GOV.UK Design System frontend.")
+  print("See the GOV.UK frontend documentation on Github for more details of the Design System frontend itself:")
+  print("https://github.com/alphagov/govuk-frontend")
+  print("")
+  print("Usage: python3 package.py outputFolder")
+        
 zipArchive = open("master.zip", "wb")
 zipArchive.write(urllib.request.urlopen("https://github.com/alphagov/govuk-frontend/archive/master.zip").read())
 zipArchive.close()
 zipfile.ZipFile("master.zip", "r").extractall("master")
 
-print("https://github.com/alphagov/govuk-frontend/archive/master.zip")
-        
-exit(0)
-        
-versionHandle = open("../govuk-frontend/dist/VERSION.txt")
+versionHandle = open("master/govuk-frontend-master/dist/VERSION.txt")
 govukFrontendVersion = versionHandle.read().strip()
 versionHandle.close()
-govukFrontendFolder = "govuk-frontend-" + govukFrontendVersion
+
+exit(0)
 
 # Copy over the SCSS files from govuk-frontend
 copyFiles("../govuk-frontend/package", "_sass", ["scss"])
