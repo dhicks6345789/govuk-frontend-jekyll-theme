@@ -2,6 +2,8 @@
 
 import os
 import shutil
+import zipfile
+import urllib.request
 
 def copyFiles(src, dest, filetypes):
   for item in os.listdir(src):
@@ -11,6 +13,8 @@ def copyFiles(src, dest, filetypes):
       if item.split(".")[-1].lower() in filetypes:
         os.makedirs(dest, exist_ok=True)
         shutil.copy(src + os.sep + item, dest + os.sep + item)
+
+data = urllib.request.urlopen("https://github.com/alphagov/govuk-frontend/archive/master.zip").read()        
 
 print("https://github.com/alphagov/govuk-frontend/archive/master.zip")
         
