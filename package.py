@@ -12,6 +12,10 @@ def copyFiles(src, dest, filetypes):
         os.makedirs(dest, exist_ok=True)
         shutil.copy(src + os.sep + item, dest + os.sep + item)
 
+print("https://github.com/alphagov/govuk-frontend/archive/master.zip")
+        
+exit(0)
+        
 versionHandle = open("../govuk-frontend/dist/VERSION.txt")
 govukFrontendVersion = versionHandle.read().strip()
 versionHandle.close()
