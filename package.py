@@ -17,9 +17,7 @@ def copyFiles(src, dest, filetypes):
 zipArchive = open("master.zip", "wb")
 zipArchive.write(urllib.request.urlopen("https://github.com/alphagov/govuk-frontend/archive/master.zip").read())
 zipArchive.close()
-
-zipRef = zipfile.ZipFile("master.zip", "r")
-zipRef.extractall("master")
+zipfile.ZipFile("master.zip", "r").extractall("master")
 
 print("https://github.com/alphagov/govuk-frontend/archive/master.zip")
         
