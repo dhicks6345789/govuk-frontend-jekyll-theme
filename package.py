@@ -65,6 +65,9 @@ copyFiles("master" + os.sep + "govuk-frontend-master" + os.sep + "dist" + os.sep
 # Remove the govuk-frontend folder.
 shutil.rmtree("master")
 
+# Copy over our stylesheets folder, replacing version numbers along the way.
+copyFiles("stylesheets", outputFolder + os.sep + "stylesheets", ["rb"])
+
 # Copy over our includes folder.
 copyFiles("_includes", outputFolder + os.sep + "_includes", ["html"])
 
