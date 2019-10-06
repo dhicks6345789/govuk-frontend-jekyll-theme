@@ -7,6 +7,7 @@ import zipfile
 import urllib.request
 
 # Recursivly copy all files of a given extension from src to dest folders.
+# If a dict named "replace" is passed in, key:value pairs will be replaced on both the target filenames and file contents.
 def copyFiles(src, dest, filetypes, replace={}):
   for item in os.listdir(src):
     if os.path.isdir(src + os.sep + item):
@@ -16,6 +17,13 @@ def copyFiles(src, dest, filetypes, replace={}):
         os.makedirs(dest, exist_ok=True)
         targetFile = dest + os.sep + item
         shutil.copy(src + os.sep + item, targetFile)
+        targetFileHandle = open(targetFile)
+        targetFileContents = targetFileHandle.read()
+        for findValue in replace.keys():
+          targetFileContents.replace(findValue, replace[findValue])
+        targetFileHandle = open(targetFile, "w")
+        targetFileHandle.write(targetFileContents)
+        targetFileHandle.close()
         for findValue in replace.keys():
           if findValue in targetFile:
             os.rename(targetFile, targetFile.replace(findValue, replace[findValue]))
