@@ -6,6 +6,10 @@ import shutil
 import zipfile
 import urllib.request
 
+def mkdir(thePath):
+  if not os.path.exists(thePath):
+    os.mkdir(thePath)
+
 def copyFiles(src, dest, filetypes):
   for item in os.listdir(src):
     if os.path.isdir(src + os.sep + item):
@@ -32,15 +36,18 @@ versionHandle = open("master/govuk-frontend-master/dist/VERSION.txt")
 govukFrontendVersion = versionHandle.read().strip()
 versionHandle.close()
 
-if not os.path.exists(outputFolder):
-  os.mkdir(outputFolder)
-
-sys.exit(0)
+mkdir(outputFolder)
+mkdir(outputFolder + os.sep + "_layouts")
+mkdir(outputFolder + os.sep + "_sass")
+mkdir(outputFolder + os.sep + "_includes")
+mkdir(outputFolder + os.sep + "_plugins")
 
 # Copy over the SCSS files from govuk-frontend
-copyFiles("../govuk-frontend/package", "_sass", ["scss"])
-for folder in ["components","core","helpers","objects","overrides","settings","tools","utilities","vendor"]:
-  copyFiles("../govuk-frontend/package/" + folder, "_sass/" + folder, ["scss"])
+copyFiles("master" + os.sep + "govuk-frontend-master" + os.sep + "package" + os.sep + "govuk", outputFolder + os.sep + "_sass", ["scss"])
+#for folder in ["components","core","helpers","objects","overrides","settings","tools","utilities","vendor"]:
+#  copyFiles("master/govuk-frontend-master/package/govuk/" + folder, "_sass/" + folder, ["scss"])
+
+sys.exit(0)
 
 # Copy over compiled / minified Javascript files.
 copyFiles("../govuk-frontend/dist", govukFrontendFolder + "/javascript", ["js"])
