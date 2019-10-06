@@ -15,9 +15,8 @@ def copyFiles(src, dest, filetypes, replace={}):
       if item.split(".")[-1].lower() in filetypes:
         os.makedirs(dest, exist_ok=True)
         shutil.copy(src + os.sep + item, dest + os.sep + item)
-        if not replace == {}:
-          print(replace)
-
+        print replace.keys()
+        
 # Print a message for the user if they haven't specified any parameters.
 outputFolder = ""
 if len(sys.argv) < 2:
