@@ -6,11 +6,24 @@ https://github.com/alphagov/govuk-frontend/archive/master.zip
 
 It then extracts the static asset files and compiled/minified Javascript files and places them in a Jeykll-compatible folder structure. It also copies accross SCSS files (not the compiled CSS files), ready for Jekyll to compile into CSS files, as well as adding a couple of SCSS files of its own.
 
-Usage:
+## Installation:
 
+Simply clone the Git repository:
+
+```
+git clone https://github.com/dhicks6345789/govuk-frontend-jekyll-theme.git
+```
+
+## Usage:
+
+```
+cd govuk-frontend-jekyll-theme
 python3 package.py outputFolder
+```
 
 outputFolder can be an existing folder, one already with files in, this script will create a set of sub-folders if they don't already exist ("_sass", "_includes", "_layouts", "_plugins", "assets", "javascript") and populate them with appropriate files.
+
+## More Details
 
 See the GOV.UK Frontend page for more details:
 https://github.com/alphagov/govuk-frontend
