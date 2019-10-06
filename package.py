@@ -48,13 +48,13 @@ mkdir(outputFolder + os.sep + "javascript")
 copyFiles("master" + os.sep + "govuk-frontend-master" + os.sep + "package" + os.sep + "govuk", outputFolder + os.sep + "_sass", ["scss"])
 
 # Copy over our includes folder.
-copyFiles("_includes", outputFolder + os.sep + "_includes"), ["html"])
+copyFiles("_includes", outputFolder + os.sep + "_includes", ["html"])
 
 # Copy over our layouts folder.
-copyFiles("_layouts", outputFolder + os.sep + "_layouts"), ["html"])
+copyFiles("_layouts", outputFolder + os.sep + "_layouts", ["html"])
 
 # Copy over our plugins folder.
-copyFiles("_plugins", outputFolder + os.sep + "_plugins"), ["rb"])
+copyFiles("_plugins", outputFolder + os.sep + "_plugins", ["rb"])
 
 # Copy over compiled / minified Javascript files.
 copyFiles("master" + os.sep + "govuk-frontend-master" + os.sep + "dist", outputFolder + os.sep + "javascript", ["js"])
