@@ -38,14 +38,23 @@ versionHandle.close()
 
 mkdir(outputFolder)
 mkdir(outputFolder + os.sep + "_sass")
-mkdir(outputFolder + os.sep + "javascript")
+mkdir(outputFolder + os.sep + "_includes")
+mkdir(outputFolder + os.sep + "_layouts")
+mkdir(outputFolder + os.sep + "_plugins")
 mkdir(outputFolder + os.sep + "assets")
-#mkdir(outputFolder + os.sep + "_includes")
-#mkdir(outputFolder + os.sep + "_plugins")
-#mkdir(outputFolder + os.sep + "_layouts")
+mkdir(outputFolder + os.sep + "javascript")
 
 # Copy over the SCSS files from govuk-frontend
 copyFiles("master" + os.sep + "govuk-frontend-master" + os.sep + "package" + os.sep + "govuk", outputFolder + os.sep + "_sass", ["scss"])
+
+# Copy over our includes folder.
+copyFiles("_includes", outputFolder + os.sep + "_includes"), ["html"])
+
+# Copy over our layouts folder.
+copyFiles("_layouts", outputFolder + os.sep + "_layouts"), ["html"])
+
+# Copy over our plugins folder.
+copyFiles("_plugins", outputFolder + os.sep + "_plugins"), ["rb"])
 
 # Copy over compiled / minified Javascript files.
 copyFiles("master" + os.sep + "govuk-frontend-master" + os.sep + "dist", outputFolder + os.sep + "javascript", ["js"])
