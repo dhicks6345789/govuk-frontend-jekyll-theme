@@ -6,11 +6,6 @@ import shutil
 import zipfile
 import urllib.request
 
-# Makes folders, without throwing an error for existing olders.
-def mkdir(thePath):
-  if not os.path.exists(thePath):
-    os.mkdir(thePath)
-
 # Recursivly copy all files of a given extension from src to dest folders.
 def copyFiles(src, dest, filetypes, replace={}):
   for item in os.listdir(src):
@@ -45,14 +40,14 @@ versionHandle.close()
 
 print("Version obtained: " + govukFrontendVersion)
 
-mkdir(outputFolder)
-mkdir(outputFolder + os.sep + "_sass")
-mkdir(outputFolder + os.sep + "_includes")
-mkdir(outputFolder + os.sep + "_layouts")
-mkdir(outputFolder + os.sep + "_plugins")
-mkdir(outputFolder + os.sep + "assets")
-mkdir(outputFolder + os.sep + "javascript")
-mkdir(outputFolder + os.sep + "stylesheets")
+os.makedirs(outputFolder, exist_ok=True)
+os.makedirs(outputFolder + os.sep + "_sass", exist_ok=True)
+os.makedirs(outputFolder + os.sep + "_includes", exist_ok=True)
+os.makedirs(outputFolder + os.sep + "_layouts", exist_ok=True)
+os.makedirs(outputFolder + os.sep + "_plugins", exist_ok=True)
+os.makedirs(outputFolder + os.sep + "assets", exist_ok=True)
+os.makedirs(outputFolder + os.sep + "javascript", exist_ok=True)
+os.makedirs(outputFolder + os.sep + "stylesheets", exist_ok=True)
 
 print("Copying files...")
 
