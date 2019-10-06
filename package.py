@@ -32,7 +32,7 @@ versionHandle = open("master/govuk-frontend-master/dist/VERSION.txt")
 govukFrontendVersion = versionHandle.read().strip()
 versionHandle.close()
 
-if not os.path.exists(outputFolder)
+if not os.path.exists(outputFolder):
   os.mkdir(outputFolder)
 
 sys.exit(0)
