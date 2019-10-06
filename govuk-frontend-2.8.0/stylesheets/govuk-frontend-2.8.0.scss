@@ -1,8 +1,0 @@
----
-# This just includes all the CSS
----
-
-$baseurl: "{{ site.baseurl }}";
-$govuk-assets-path: "{{ site.baseurl }}/govuk-frontend-2.6.0/assets/";
-
-@import "all";
