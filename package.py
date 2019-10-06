@@ -12,14 +12,16 @@ def mkdir(thePath):
     os.mkdir(thePath)
 
 # Recursivly copy all files of a given extension from src to dest folders.
-def copyFiles(src, dest, filetypes):
+def copyFiles(src, dest, filetypes, replace={}):
   for item in os.listdir(src):
     if os.path.isdir(src + os.sep + item):
-      copyFiles(src + os.sep + item, dest + os.sep + item, filetypes)
+      copyFiles(src + os.sep + item, dest + os.sep + item, filetypes, replace=replace)
     else:
       if item.split(".")[-1].lower() in filetypes:
         os.makedirs(dest, exist_ok=True)
         shutil.copy(src + os.sep + item, dest + os.sep + item)
+        if not replace == {}:
+          print(replace)
 
 # Print a message for the user if they haven't specified any parameters.
 outputFolder = ""
@@ -50,6 +52,7 @@ mkdir(outputFolder + os.sep + "_layouts")
 mkdir(outputFolder + os.sep + "_plugins")
 mkdir(outputFolder + os.sep + "assets")
 mkdir(outputFolder + os.sep + "javascript")
+mkdir(outputFolder + os.sep + "stylesheets")
 
 print("Copying files...")
 
@@ -66,7 +69,7 @@ copyFiles("master" + os.sep + "govuk-frontend-master" + os.sep + "dist" + os.sep
 shutil.rmtree("master")
 
 # Copy over our stylesheets folder, replacing version numbers along the way.
-copyFiles("stylesheets", outputFolder + os.sep + "stylesheets", ["rb"])
+copyFiles("stylesheets", outputFolder + os.sep + "stylesheets", ["scss"], replace={"versionGoesHere":govukFrontendVersion})
 
 # Copy over our includes folder.
 copyFiles("_includes", outputFolder + os.sep + "_includes", ["html"])
