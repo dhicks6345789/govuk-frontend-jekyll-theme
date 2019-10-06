@@ -14,8 +14,11 @@ def copyFiles(src, dest, filetypes, replace={}):
     else:
       if item.split(".")[-1].lower() in filetypes:
         os.makedirs(dest, exist_ok=True)
-        shutil.copy(src + os.sep + item, dest + os.sep + item)
-        print(replace.keys())
+        targetFile = dest + os.sep + item
+        shutil.copy(src + os.sep + item, targetFile)
+        for findValue in replace.keys():
+          if findValue in targetFile:
+            os.rename(targetFile, targetFile.replace(findValue, replace[findValue]))
         
 # Print a message for the user if they haven't specified any parameters.
 outputFolder = ""
