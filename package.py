@@ -37,20 +37,18 @@ govukFrontendVersion = versionHandle.read().strip()
 versionHandle.close()
 
 mkdir(outputFolder)
-mkdir(outputFolder + os.sep + "_layouts")
 mkdir(outputFolder + os.sep + "_sass")
-mkdir(outputFolder + os.sep + "_includes")
-mkdir(outputFolder + os.sep + "_plugins")
+mkdir(outputFolder + os.sep + "javascript")
+mkdir(outputFolder + os.sep + "assets")
+#mkdir(outputFolder + os.sep + "_includes")
+#mkdir(outputFolder + os.sep + "_plugins")
+#mkdir(outputFolder + os.sep + "_layouts")
 
 # Copy over the SCSS files from govuk-frontend
 copyFiles("master" + os.sep + "govuk-frontend-master" + os.sep + "package" + os.sep + "govuk", outputFolder + os.sep + "_sass", ["scss"])
-#for folder in ["components","core","helpers","objects","overrides","settings","tools","utilities","vendor"]:
-#  copyFiles("master/govuk-frontend-master/package/govuk/" + folder, "_sass/" + folder, ["scss"])
-
-sys.exit(0)
 
 # Copy over compiled / minified Javascript files.
-copyFiles("../govuk-frontend/dist", govukFrontendFolder + "/javascript", ["js"])
+copyFiles("master" + os.sep + "govuk-frontend-master" + os.sep + "dist", outputFolder + os.sep + "javascript", ["js"])
 
-copyFiles("../govuk-frontend/dist/assets/fonts", govukFrontendFolder + "/assets/fonts", ["woff","woff2","eot"])
-copyFiles("../govuk-frontend/dist/assets/images", govukFrontendFolder + "/assets/images", ["ico","png","svg"])
+# Copy over the govuk-frontend static assets (fonts, icons, images).
+copyFiles("master" + os.sep + "govuk-frontend-master" + os.sep + "dist" + os.sep + "assets", outputFolder + os.sep + "assets", ["woff","woff2","eot","ico","png","svg"])
