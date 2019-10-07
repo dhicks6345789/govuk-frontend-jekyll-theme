@@ -17,7 +17,7 @@ def copyFiles(src, dest, filetypes, replace={}):
         os.makedirs(dest, exist_ok=True)
         targetFile = dest + os.sep + item
         shutil.copy(src + os.sep + item, targetFile)
-        targetFileHandle = open(targetFile)
+        targetFileHandle = open(targetFile, encoding="latin-1")
         targetFileContents = targetFileHandle.read()
         for findValue in replace.keys():
           targetFileContents.replace(findValue, replace[findValue])
