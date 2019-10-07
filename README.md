@@ -20,7 +20,7 @@ git clone https://github.com/dhicks6345789/govuk-frontend-jekyll-theme.git
 python3 package.py outputFolder
 ```
 
-outputFolder can be an existing folder, one already with files in (i.e. your existing Jekyll project folder), this script will create a set of sub-folders if they don't already exist ("_sass", "_includes", "_layouts", "_plugins", "assets", "javascript") and populate them with appropriate files. Existing files in the destination folder will be left alone, other than if their filename happens to match a file being copied over, in which case files will be overwritten.
+outputFolder can be an existing folder, one already with files in (i.e. your existing Jekyll project folder), this script will create a set of sub-folders if they don't already exist ("_sass", "_includes", "_layouts", "_plugins", "assets", "javascript", "stylesheets") and populate them with appropriate files. Existing files in the destination folder will be left alone, other than if their filename happens to match a file being copied over, in which case files will be overwritten.
 
 ## More Details
 
