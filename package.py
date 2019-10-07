@@ -20,7 +20,7 @@ def copyFiles(src, dest, filetypes, replace={}):
         targetFileHandle = open(targetFile, encoding="latin-1")
         targetFileContents = targetFileHandle.read()
         for findValue in replace.keys():
-          targetFileContents.replace(findValue, replace[findValue])
+          targetFileContents = targetFileContents.replace(findValue, replace[findValue])
         targetFileHandle = open(targetFile, "w")
         targetFileHandle.write(targetFileContents)
         targetFileHandle.close()
